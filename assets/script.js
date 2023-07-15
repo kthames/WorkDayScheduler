@@ -10,20 +10,28 @@ hours.forEach((hour,i) => {
   main.innerHTML += `
   <div class="row time-block ${rH>cH ? 'future' : rH<cH ? 'past' : 'present'}">
     <div class="col-2 col-md-1 hour text-center py-3">${hour}</div>
-    <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+    <textarea id = "plannerText${i}" class="col-8 col-md-10 description" rows="3"></textarea>
     <button class="btn saveBtn col-2 col-md-1" aria-label="save">
       <i class="fas fa-save" aria-hidden="true"></i>
     </button>
   </div>`;
 });
 
-$('button').on('click', () => {
-    store = [];
+$('button').click(function(e){
+  e.preventDefault();
+  storeWork = [];
 
-    document.querySelectorAll('textarea').forEach(obj => {
-      store.push(obj.value)
-    });
+  storeWork[0] = $('#plannerText0').val();
+  storeWork[1] = $('#plannerText1').val();
+  storeWork[2] = $('#plannerText2').val();
+  storeWork[3] = $('#plannerText3').val();
+  storeWork[4] = $('#plannerText4').val();
+  storeWork[5] = $('#plannerText5').val();
+  storeWork[6] = $('#plannerText6').val();
+  storeWork[7] = $('#plannerText7').val();
+  storeWork[8] = $('#plannerText8').val();
 
-    console.log(store);
+  console.log(storeWork);
 })
+
 
