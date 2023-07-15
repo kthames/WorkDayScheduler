@@ -32,6 +32,44 @@ $('button').click(function(e){
   storeWork[8] = $('#plannerText8').val();
 
   console.log(storeWork);
+
+  saveWorkToStorage(storeWork);
+
 })
+
+// Takes the array of work items and saves them in localStorage.
+function saveWorkToStorage(savedWork) {
+  localStorage.setItem('savedWork', JSON.stringify(savedWork));
+  console.log("saved");
+}
+
+function readWorkFromStorage() {
+  var work = localStorage.getItem('savedWork');
+  if (work) {
+    work = JSON.parse(work);
+  } else {
+    work = [];
+  }
+  return work;
+}
+
+function printWorkText() {
+
+  storedWork = readWorkFromStorage();
+  console.log(storedWork);
+
+  $('#plannerText0').val(storedWork[0]);
+  $('#plannerText1').val(storedWork[1]);
+  $('#plannerText2').val(storedWork[2]);
+  $('#plannerText3').val(storedWork[3]);
+  $('#plannerText4').val(storedWork[4]);
+  $('#plannerText5').val(storedWork[5]);
+  $('#plannerText6').val(storedWork[6]);
+  $('#plannerText7').val(storedWork[7]);
+  $('#plannerText8').val(storedWork[8]);
+
+}
+
+printWorkText();
 
 
