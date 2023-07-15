@@ -1,8 +1,8 @@
-let store;
-const hours = ['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM'];
-
-currentDay.innerHTML = dayjs().format('h:mm a, ddd, MMM D');
-
+let store;//global array to store work items
+const hours = ['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM'];//to display 9-5 work hours
+//current date and time in header
+currentDay.innerHTML = dayjs().format('dddd, MMMM D | h:mm A');
+//create each time slot, compare to current hour for past, present and future tense
 hours.forEach((hour,i) => {
   let rH = i+9;
   let cH = dayjs().format('H');
@@ -16,7 +16,7 @@ hours.forEach((hour,i) => {
     </button>
   </div>`;
 });
-
+//upon clicking any save button all values are saved into array and saved to local storage
 $('button').click(function(e){
   e.preventDefault();
   storeWork = [];
@@ -43,6 +43,7 @@ function saveWorkToStorage(savedWork) {
   console.log("saved");
 }
 
+//checks for values and returns saved work items array
 function readWorkFromStorage() {
   var work = localStorage.getItem('savedWork');
   if (work) {
@@ -53,6 +54,7 @@ function readWorkFromStorage() {
   return work;
 }
 
+//prints text from local storage to DOM
 function printWorkText() {
 
   storedWork = readWorkFromStorage();
@@ -70,6 +72,7 @@ function printWorkText() {
 
 }
 
+//called upon page loading to print saved work items
 printWorkText();
 
 
